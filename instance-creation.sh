@@ -19,7 +19,6 @@ for instance in $@
 do
     # Creating the EC2 instance and recording its instance ID in the INSTANCE_ID variable
     INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SECURITY_GROUP_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${instance}}]" --query 'Instances[0].InstanceId' --output text) &>> LOG_FILE
-    VALIDATE $? "Creating $instance  Instance"
 
     # Logic that retrieves the public IP for frontend instances and the private IP for backend instances.
     if [ $instance == "frontend" ]; then
