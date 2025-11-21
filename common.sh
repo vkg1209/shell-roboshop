@@ -10,8 +10,11 @@ START_TIME=$(date -%s)
 SCRIPT_DIR=$PWD
 
 LOG_FOLDER="/var/log/shell-roboshop"
+SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FILE="$LOG_FOLDER/$0.log"
 
+# Creating a shell-roboshop log folder if doesnt exist
+mkdir -p $LOGS_FOLDER
 
 check_root() {
     if( $USER_ID -ne 0 ); then
@@ -43,6 +46,26 @@ nodejs_setup() {
     validate $? "Installing dependencies"
 }
 
+java_setup() {
+    dnf install maven -y &>>$LOG_FILE
+    validate $? "Installing Maven"
+
+    mvn clean package &>>$LOG_FILE
+    validate $? "Packing the Application"
+
+    mv target/$APP_NAME-1.0.jar $APP_NAME.jar &>>$LOG_FILE
+    validate $? "Renaming the Artifact"
+}
+
+python_setup() {
+    dnf install python3 gcc python3-devel -y &>>$LOG_FILE
+    validate $? "Installing python 3"
+
+    pip3 install -r requirements.txt &>>$LOG_FILE
+    validate $? "Installing dependencies"
+
+}
+
 app_setup() {
     id roboshop
     if [ $? -ne 0 ]; then
@@ -55,7 +78,7 @@ app_setup() {
     mkdir -p /app 
     validate $? "Creating App directory"
 
-    curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
+    curl -o /tmp/$APP_NAME.zip https://roboshop-artifacts.s3.amazonaws.com/$APP_NAME-v3.zip &>>$LOG_FILE
     validate $? "Downloaded the $APP_NAME application"
 
     cd /app 
@@ -64,7 +87,7 @@ app_setup() {
     rm -rf /app/*
     validate $? "Removing the existing code"
 
-    unzip /tmp/catalogue.zip &>>$LOG_FILE
+    unzip /tmp/$APP_NAME.zip &>>$LOG_FILE
     validate $? "Unzipping $APP_NAME"
 }
 
