@@ -69,8 +69,8 @@ golang_setup() {
     dnf install golang -y &>>$LOG_FILE
     validate $? "Installing golang"
 
-    go mod init dispatch
-    go get 
+    go mod init dispatch &>>$LOG_FILE
+    go get &>>$LOG_FILE
     go build &>>$LOG_FILE
     validate $? "Installing Dependencies"
 }
