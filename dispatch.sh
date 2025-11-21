@@ -9,7 +9,7 @@ app_setup
 golang_setup
 systemd_setup
 
-systemctl enable dispatch
+systemctl enable dispatch &>>$LOG_FILE
 validate $? "Enabling dispatch"
 
 app_restart
