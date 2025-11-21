@@ -14,7 +14,6 @@ SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FILE="$LOG_FOLDER/$0.log"
 
 # Creating a shell-roboshop log folder if doesnt exist
-mkdir -p $LOGS_FOLDER
 
 check_root() {
     if [ $USER_ID -ne 0 ]; then
