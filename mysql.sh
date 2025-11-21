@@ -7,7 +7,7 @@ check_root
 dnf install mysql-server -y 
 validate $? "Installing mysql"
 
-systemctl enable mysqld -y $>>$LOG_FILE
+systemctl enable mysqld -y 
 validate $? "Enabling mysql"
 
 systemctl start mysqld  
