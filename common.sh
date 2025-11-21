@@ -5,8 +5,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-set -euo pipefail
-
 USER_ID=$(id -u)
 START_TIME=$(date +%s)
 SCRIPT_DIR=$PWD
