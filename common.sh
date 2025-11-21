@@ -11,10 +11,10 @@ SCRIPT_DIR=$PWD
 
 LOG_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
-LOG_FILE="$LOG_FOLDER/$0.log"
+LOG_FILE=$"$LOG_FOLDER/$SCRIPT_NAME.log"
 
 # Creating a shell-roboshop log folder if doesnt exist
-
+mkdir -p $LOG_FOLDER
 check_root() {
     if [ $USER_ID -ne 0 ]; then
         echo "ERROR: You need ROOT Privilages to execute this script"
