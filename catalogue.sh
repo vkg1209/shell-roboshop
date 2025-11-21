@@ -12,17 +12,17 @@ nodejs_setup
 systemd_setup
 
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
-VALIDATE $? "Copy mongo repo"
+validate $? "Copy mongo repo"
 
 # Installing mongodb client
 dnf install mongodb-mongosh -y &>>$LOG_FILE
-VALIDATE $? "Install MongoDB client"
+validate $? "Install MongoDB client"
 
 # Loading the catalogue data into the database
 INDEX=$(mongosh mongodb.bloombear.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
-    VALIDATE $? "Load $APP_NAME products"
+    validate $? "Load $APP_NAME products"
 else
     echo -e "$APP_NAME products already loaded ... $Y SKIPPING $N"
 fi
