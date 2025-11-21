@@ -4,10 +4,10 @@ source ./common.sh
 
 check_root
 
-dnf install mysql-server $>>$LOG_FILE
+dnf install mysql-server -y &>>$LOG_FILE
 validate $? "Installing mysql"
 
-systemctl enable mysqld $>>$LOG_FILE
+systemctl enable mysqld &>>$LOG_FILE
 validate $? "Enabling mysql"
 
 systemctl start mysqld  
