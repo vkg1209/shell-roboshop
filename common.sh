@@ -17,14 +17,14 @@ LOG_FILE="$LOG_FOLDER/$0.log"
 mkdir -p $LOGS_FOLDER
 
 check_root() {
-    if( $USER_ID -ne 0 ); then
+    if [ $USER_ID -ne 0 ]; then
         echo "ERROR: You need ROOT Privilages to execute this script"
         exit 1
     fi
 }
 
 validate() {
-    if( $1 -ne 0 ); then
+    if [ $1 -ne 0 ]; then
         echo -e "$2 ... $R FAILURE $N"
         exit 1
     else
