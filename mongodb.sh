@@ -4,7 +4,7 @@ source ./common.sh
 
 check_root
 
-cp mongo.rep /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo
 validate $? "Adding Mongo Repo"
 
 dnf install mongodb-org -y 
