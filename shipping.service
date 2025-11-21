@@ -5,7 +5,7 @@ Description=Shipping Service
 User=roboshop
 // highlight-start
 Environment=CART_ENDPOINT=cart.bloombear.fun:8080
-Environment=DB_HOST=bloombear.mysql.fun
+Environment=DB_HOST=mysql.bloombear.fun
 // highlight-end
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
