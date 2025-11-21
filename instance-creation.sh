@@ -1,15 +1,10 @@
-#!bin/bash
-
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
+#!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
 SECURITY_GROUP_ID="sg-03c4d065bf7f7f94d"
 DOMAIN_NAME="bloombear.fun"
 
-LOG_FOLDER="/var/log/shell-scripting"
+LOG_FOLDER="/var/log/shell-roboshop"
 LOG_FILE="$LOG_FOLDER/$0.log"
 
 set -euo pipefail
