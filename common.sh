@@ -6,7 +6,7 @@ Y="\e[33m"
 N="\e[0m"
 
 USER_ID=$(id -u)
-START_TIME=$(date -%s)
+START_TIME=$(date +%s)
 SCRIPT_DIR=$PWD
 
 LOG_FOLDER="/var/log/shell-roboshop"
@@ -106,7 +106,7 @@ app_restart() {
 
 
 print_total_time() {
-    END_TIME=$(date -%s)
+    END_TIME=$(date +%s)
     TOTAL_TIME=$(( $END_TIME - $START_TIME ))
     echo -e "Script executed in $Y $TOTAL_TIME s$N"
 }
